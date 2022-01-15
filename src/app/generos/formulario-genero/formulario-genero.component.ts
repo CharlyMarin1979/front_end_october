@@ -19,7 +19,7 @@ export class FormularioGeneroComponent implements OnInit {
   modelo: generoCreacionDTO;
 
   @Output()
-  submit: EventEmitter<generoCreacionDTO> = new EventEmitter<generoCre
+  submit: EventEmitter<generoCreacionDTO> = new EventEmitter<generoCreacionDTO>();
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       nombre: ['', {
