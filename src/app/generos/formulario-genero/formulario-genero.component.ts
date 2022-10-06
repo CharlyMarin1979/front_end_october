@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { primeraLetraMayuscula } from 'src/app/utilidades/validadores/primeraLetyraMayuscula';
-import { EventEmitter } from 'stream';
 import { generoCreacionDTO } from '../genero';
+
 
 @Component({
   selector: 'app-formulario-genero',
@@ -16,10 +16,14 @@ export class FormularioGeneroComponent implements OnInit {
   form: FormGroup;
 
   @Input()
+  errores: string[] = [];
+
+  @Input()
   modelo: generoCreacionDTO;
 
   @Output()
-  submit: EventEmitter<generoCreacionDTO> = new EventEmitter<generoCreacionDTO>();
+  onSubmit: EventEmitter<generoCreacionDTO> = new EventEmitter<generoCreacionDTO>();
+  
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       nombre: ['', {
@@ -33,7 +37,7 @@ export class FormularioGeneroComponent implements OnInit {
   }
 
   guardarCambios(){
-    this.submit.emit(this.form.value);
+    this.onSubmit.emit(this.form.value);
   }
 
   obtenerErrorCampoNombre(){

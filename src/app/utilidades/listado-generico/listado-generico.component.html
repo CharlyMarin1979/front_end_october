@@ -11,7 +11,7 @@
           <ng-content select="[vacio]"></ng-content>
         </span>
       <span *ngIf="!vacio.innerHTML.trim()">
-        <p>No hay películas</p>
+        <p>{{titulo}}</p>
       </span>
   </div>
   <ng-container *ngIf="listado">

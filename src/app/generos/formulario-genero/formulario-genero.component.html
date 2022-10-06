@@ -1,7 +1,9 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
 <form (submit)="guardarCambios()" [formGroup]="form">
     <div>
         <mat-form-field appearance="outline">
-            <mat-label>Nombre</mat-label>
+            <mat-label>Nombre de Género</mat-label>
             <input formControlName="nombre" matInput/>
             <mat-error *ngIf="form.invalid">{{obtenerErrorCampoNombre()}}</mat-error>
         </mat-form-field>

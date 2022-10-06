@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PeliculaDTO } from '../peliculas/pelicula';
+import { PeliculasService } from '../peliculas/peliculas.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private peliculasService: PeliculasService) { }
 
   ngOnInit(): void {
+    this.peliculasService.obtenerLandingPage().subscribe(landingPage => {
+      this.peliculasEnCines = landingPage.enCines;
+      this.peliculasProximosEstrenos = landingPage.proximosEstrenos;
+    });
+
+    /* setTimeout(() => {
       this.peliculasEnCines = [
         {
           titulo: 'Spider-Man',
@@ -24,10 +32,16 @@ export class LandingPageComponent implements OnInit {
           poster: 'http://orig02.deviantart.net/4350/f/2010/284/5/f/5f8dd18570404534a75808d112ad0181-d30kkv5.jpg'
         }
       ];
+
+    },1); */
+
+
+      
   }
 
-  peliculasEnCines;
-  peliculasProximosEstrenos = [
+  peliculasEnCines: PeliculaDTO[];
+  peliculasProximosEstrenos: PeliculaDTO[];
+  /* peliculasProximosEstrenos = [
     {
       titulo: 'Avengers - END GAME',
       fechaLanzamiento: new Date(),
@@ -44,8 +58,8 @@ export class LandingPageComponent implements OnInit {
       titulo: 'CHRISTINE',
       fechaLanzamiento: new Date(),
       precio: 355.50,
-      poster: 'https://fanart.tv/fanart/movies/8769/movieposter/christine-53de0248bbaa6.jpg'
+      poster: 'https://i.pinimg.com/originals/a8/3a/95/a83a959982292652e5866d1a5e52b611.jpg'
     }
-  ];
+  ]; */
 
 }
